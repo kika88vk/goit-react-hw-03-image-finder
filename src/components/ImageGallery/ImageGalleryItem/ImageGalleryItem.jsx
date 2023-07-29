@@ -3,7 +3,9 @@ import * as basicLightbox from 'basiclightbox';
 
 export const ImageGalleryItem = ({ bigPhoto, smallPhoto, tags }) => {
   const openImage = () => {
-    basicLightbox.create(`<img  src=${bigPhoto}>`).show();
+    basicLightbox
+      .create(`<img width="1400" height="900" src=${bigPhoto}>`)
+      .show();
   };
 
   return (
@@ -12,7 +14,7 @@ export const ImageGalleryItem = ({ bigPhoto, smallPhoto, tags }) => {
         src={smallPhoto}
         alt={tags}
         className={css.ImageGalleryItemImage}
-        onClick={() => openImage}
+        onClick={openImage}
       />
     </li>
   );
