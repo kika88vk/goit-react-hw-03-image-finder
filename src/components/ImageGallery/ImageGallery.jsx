@@ -10,18 +10,34 @@ export class ImageGallery extends Component {
     images: null,
     error: null,
     status: 'idle',
+    page: 1,
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.imageTags !== this.props.imageTags) {
       this.setState({ status: 'pending' });
 
-      apiImages(this.props.imageTags)
+      apiImages(this.props.imageTags, this.state.page)
+        .then(images =>
+          this.setState({ images: images.hits, status: 'resolved' })
+        )
+        .catch(error => this.setState({ error, status: 'rejected' }));
+    }
+    if (prevState.page !== this.state.page) {
+      this.setState({ status: 'pending' });
+
+      apiImages(this.props.imageTags, this.state.page)
         .then(images =>
           this.setState({ images: images.hits, status: 'resolved' })
         )
         .catch(error => this.setState({ error, status: 'rejected' }));
     }
   }
+
+  handleBtnChangePage = page => {
+    this.setState({ page });
+    console.log(page);
+  };
+
   render() {
     const { images, error, status } = this.state;
 
@@ -54,7 +70,9 @@ export class ImageGallery extends Component {
               />
             ))}
           </ul>
-          {images.length > 0 && <Button />}
+          {images.length > 0 && (
+            <Button onChangePage={this.handleBtnChangePage} />
+          )}
         </>
       );
     }

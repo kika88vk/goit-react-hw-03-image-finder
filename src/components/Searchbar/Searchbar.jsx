@@ -16,7 +16,7 @@ export class Searchbar extends Component {
     if (this.state.imageTags.trim() === '') {
       return;
     }
-    this.props.onPropSumit(this.state.imageTags);
+    this.props.onPropSubmit(this.state.imageTags);
     this.setState({ imageTags: '' });
   };
   render() {

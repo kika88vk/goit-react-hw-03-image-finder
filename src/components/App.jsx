@@ -16,7 +16,7 @@ export class App extends Component {
   render() {
     return (
       <div className={css.App}>
-        <Searchbar onPropSumit={this.handleFormSubmit} />
+        <Searchbar onPropSubmit={this.handleFormSubmit} />
         <ImageGallery imageTags={this.state.imageTags} />
       </div>
     );
