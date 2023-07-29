@@ -1,7 +1,7 @@
 import css from './ImageGalleryItem.module.css';
 import * as basicLightbox from 'basiclightbox';
 
-export const ImageGalleryItem = ({ bigPhoto, smallPhoto }) => {
+export const ImageGalleryItem = ({ bigPhoto, smallPhoto, tags }) => {
   const openImage = () => {
     basicLightbox.create(`<img  src=${bigPhoto}>`).show();
   };
@@ -10,7 +10,7 @@ export const ImageGalleryItem = ({ bigPhoto, smallPhoto }) => {
     <li className={css.ImageGalleryItem}>
       <img
         src={smallPhoto}
-        alt=""
+        alt={tags}
         className={css.ImageGalleryItemImage}
         onClick={() => openImage}
       />

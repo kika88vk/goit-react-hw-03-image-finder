@@ -7,12 +7,13 @@ import { Button } from 'components/Button/Button';
 export class ImageGallery extends Component {
   state = {
     images: null,
-    loading: false,
     error: null,
+    status: 'idle',
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.imageTags !== this.props.imageTags) {
-      this.setState({ loading: true, images: null });
+      this.setState({ status: 'pending' });
+
       setTimeout(() => {
         fetch(
           `https://pixabay.com/api/?q=${this.props.imageTags}&page=1&key=37262675-c60479e6538b2ce74a07e98ab&image_type=photo&orientation=horizontal&per_page=12`
@@ -25,33 +26,48 @@ export class ImageGallery extends Component {
               new Error(`Don't found ${this.props.imageTags} pictures`)
             );
           })
-          .then(images => this.setState({ images: images.hits }))
-          .catch(error => this.setState({ error }))
-          .finally(this.setState({ loading: false }));
+          .then(images =>
+            this.setState({ images: images.hits, status: 'resolved' })
+          )
+          .catch(error => this.setState({ error, status: 'rejected' }));
       }, 1000);
     }
   }
   render() {
-    const { loading, images, error } = this.state;
-    return (
-      <>
-        {error && <h1 className={css.heading}>{this.state.error.message}</h1>}
-        {images && images.length === 0 && (
-          <h1 className={css.heading}>Sorry, pictures are not found!</h1>
-        )}
-        {loading && <Loader />}
-        <ul className={css.ImageGallery}>
-          {images &&
-            images.map(image => (
+    const { images, error, status } = this.state;
+
+    if (status === 'idle') {
+      return <h1 className={css.heading}>Enter what you're looking for</h1>;
+    }
+
+    if (status === 'pending') {
+      return <Loader />;
+    }
+
+    if (status === 'rejected') {
+      return <h1 className={css.heading}>{error.message}</h1>;
+    }
+
+    if (status === 'resolved') {
+      return (
+        <>
+          {images.length === 0 && (
+            <h1 className={css.heading}>Sorry, pictures are not found!</h1>
+          )}
+
+          <ul className={css.ImageGallery}>
+            {images.map(image => (
               <ImageGalleryItem
                 key={image.id}
                 bigPhoto={image.largeImageURL}
                 smallPhoto={image.webformatURL}
+                tags={image.tags}
               />
             ))}
-        </ul>
-        <div>{images && <Button />}</div>
-      </>
-    );
+          </ul>
+          {images.length > 0 && <Button />}
+        </>
+      );
+    }
   }
 }
