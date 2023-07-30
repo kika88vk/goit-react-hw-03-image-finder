@@ -9,7 +9,7 @@ export class ImageGalleryItem extends Component {
   tags = this.props.tags;
 
   static propTypes = {
-    bigPhotog: PropTypes.string.isRequired,
+    bigPhotog: PropTypes.string,
     smallPhoto: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
   };
