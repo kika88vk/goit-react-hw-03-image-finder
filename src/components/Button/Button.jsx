@@ -17,7 +17,7 @@ export class Button extends Component {
     this.props.onChangePage(this.state.page);
   };
   render() {
-    const onSumbit = this.props.onSubmit;
+    // const onSumbit = this.props.onSubmit;
     return (
       <div className={css.ButtonWraper}>
         <button
