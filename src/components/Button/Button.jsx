@@ -3,28 +3,23 @@ import React, { Component } from 'react';
 
 export class Button extends Component {
   state = {
-    page: 2,
+    pageBtn: 2,
   };
 
   handleClick = () => {
-    this.setState(prevState => {
-      return { page: prevState.page + 1 };
-    });
-    console.log('this.state.page', this.state.page);
+    this.setState(prevState => ({ pageBtn: prevState.pageBtn + 1 }));
+    console.log('click + 1: ', this.state.pageBtn);
   };
 
-  handleChangePage = () => {
-    this.props.onChangePage(this.state.page);
-  };
+  // handleChangePage = () => {
+  //   this.props.onChangePage(this.state.pageBtn);
+  //   console.log('page after click', this.state.pageBtn);
+  // };
+
   render() {
-    // const onSumbit = this.props.onSubmit;
     return (
-      <div className={css.ButtonWraper}>
-        <button
-          className={css.Button}
-          onClick={this.handleClick}
-          onSubmit={this.handleChangePage}
-        >
+      <div className={css.ButtonWraper} onClick={this.handleChangePage}>
+        <button type="submit" className={css.Button} onClick={this.handleClick}>
           Load more
         </button>
       </div>

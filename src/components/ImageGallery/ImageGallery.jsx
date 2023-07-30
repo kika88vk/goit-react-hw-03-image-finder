@@ -19,6 +19,7 @@ export class ImageGallery extends Component {
     status: 'idle',
     page: 1,
   };
+
   componentDidUpdate(prevProps, prevState) {
     if (prevProps.imageTags !== this.props.imageTags) {
       this.setState({ status: 'pending' });
@@ -42,7 +43,7 @@ export class ImageGallery extends Component {
 
   handleBtnChangePage = page => {
     this.setState({ page });
-    console.log(page);
+    console.log('gallery page', page);
   };
 
   render() {
