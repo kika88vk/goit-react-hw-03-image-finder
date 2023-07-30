@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import css from './Searchbar.module.css';
 import { ImSearch } from 'react-icons/im';
+import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
+  propSubmit = this.props.onPropSubmit;
+  static propTypes = {
+    PropSubmit: PropTypes.func.isRequired,
+  };
+
   state = {
     imageTags: '',
   };

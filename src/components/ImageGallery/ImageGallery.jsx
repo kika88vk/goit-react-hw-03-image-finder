@@ -4,8 +4,15 @@ import React, { Component } from 'react';
 import { Loader } from 'components/Loader/Loader';
 import { Button } from 'components/Button/Button';
 import { apiImages } from 'components/ApiImages/ApiImages';
+import PropTypes from 'prop-types';
 
 export class ImageGallery extends Component {
+  tags = this.props.imageTags;
+
+  static propTypes = {
+    tags: PropTypes.string.isRequired,
+  };
+
   state = {
     images: null,
     error: null,

@@ -1,8 +1,19 @@
 import css from './ImageGalleryItem.module.css';
 import React, { Component } from 'react';
 import { Modal } from 'components/Modal/Modal';
+import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
+  bigPhoto = this.props.bigPhoto;
+  smallPhoto = this.props.smallPhoto;
+  tags = this.props.tags;
+
+  static propTypes = {
+    bigPhotog: PropTypes.string.isRequired,
+    smallPhoto: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
+  };
+
   state = {
     showModal: false,
   };
