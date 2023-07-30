@@ -10,17 +10,17 @@ export class ImageGalleryItem extends Component {
 
   static propTypes = {
     bigPhotog: PropTypes.string,
-    smallPhoto: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
+    smallPhoto: PropTypes.string,
+    tags: PropTypes.string,
   };
 
   state = {
     showModal: false,
   };
 
-  openImage = () => {
+  togglePopUpImage = () => {
     this.setState(state => ({ showModal: !state.showModal }));
-    console.log('openImage');
+    console.log('togglePopUpImage');
   };
 
   render() {
@@ -32,11 +32,11 @@ export class ImageGalleryItem extends Component {
             src={smallPhoto}
             alt={tags}
             className={css.ImageGalleryItemImage}
-            onClick={this.openImage}
+            onClick={this.togglePopUpImage}
           />
         </li>
         {this.state.showModal && (
-          <Modal onClose={this.openImage}>
+          <Modal onClose={this.togglePopUpImage}>
             <img width="1400" height="900" src={bigPhoto} alt={tags} />
           </Modal>
         )}
