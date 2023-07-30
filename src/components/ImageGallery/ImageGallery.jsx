@@ -10,7 +10,7 @@ export class ImageGallery extends Component {
   tags = this.props.imageTags;
 
   static propTypes = {
-    tags: PropTypes.string.isRequired,
+    tags: PropTypes.string,
   };
 
   state = {
