@@ -26,12 +26,12 @@ export class App extends Component {
   };
 
   render() {
-    const { imageTags, bigImage } = this.state;
+    const { imageTags, bigImage, showModal } = this.state;
     return (
       <div className={css.App}>
         <Searchbar onPropSubmit={this.handleFormSubmit} />
         <ImageGallery imageTags={imageTags} openModal={this.openModal} />
-        {this.state.showModal && (
+        {showModal && (
           <Modal onClose={this.closeModal}>
             <img
               width="1400"
