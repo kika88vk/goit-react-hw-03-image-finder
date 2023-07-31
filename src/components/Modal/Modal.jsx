@@ -35,6 +35,7 @@ export class Modal extends Component {
     console.log('close target');
     return;
   };
+
   render() {
     return createPortal(
       <div className={css.Overlay} onClick={this.handleClickOnOverlay}>

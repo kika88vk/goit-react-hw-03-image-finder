@@ -35,7 +35,12 @@ export class ImageGallery extends Component {
 
       apiImages(this.props.imageTags, this.state.page)
         .then(images =>
-          this.setState({ images: images.hits, status: 'resolved' })
+          this.setState(prevState => {
+            return {
+              images: [...prevState.images, ...images.hits],
+              status: 'resolved',
+            };
+          })
         )
         .catch(error => this.setState({ error, status: 'rejected' }));
     }
@@ -75,6 +80,7 @@ export class ImageGallery extends Component {
                 bigPhoto={image.largeImageURL}
                 smallPhoto={image.webformatURL}
                 tags={image.tags}
+                openModal={this.props.openModal}
               />
             ))}
           </ul>
