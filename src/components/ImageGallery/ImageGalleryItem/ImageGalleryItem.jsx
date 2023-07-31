@@ -46,10 +46,9 @@ export class ImageGalleryItem extends Component {
     );
   }
 }
-{
-  /* {this.state.showModal && (
+
+/* {this.state.showModal && (
           <Modal onClose={this.closeModal}>
             <img width="1400" height="900" src={bigPhoto} alt={tags} />
           </Modal>
         )} */
-}
