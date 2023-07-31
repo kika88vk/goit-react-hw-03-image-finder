@@ -41,9 +41,9 @@ export class ImageGallery extends Component {
     }
   }
 
-  handleBtnChangePage = page => {
-    this.setState({ page });
-    console.log('gallery page', page);
+  handleBtnChangePage = () => {
+    this.setState(prev => ({ page: prev.page + 1 }));
+    console.log('gallery page', this.state.page);
   };
 
   render() {

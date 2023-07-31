@@ -24,12 +24,16 @@ export class Modal extends Component {
     if (evt.code === 'Escape') {
       this.props.onClose();
     }
+    console.log('close esc');
   };
 
   handleClickOnOverlay = evt => {
     if (evt.target === evt.currentTarget) {
       this.props.onClose();
     }
+
+    console.log('close target');
+    return;
   };
   render() {
     return createPortal(

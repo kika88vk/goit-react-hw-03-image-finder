@@ -18,9 +18,14 @@ export class ImageGalleryItem extends Component {
     showModal: false,
   };
 
-  togglePopUpImage = () => {
-    this.setState(state => ({ showModal: !state.showModal }));
-    console.log('togglePopUpImage');
+  openModal = () => {
+    this.setState({ showModal: true });
+    console.log('open modal');
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
+    console.log('close modal');
   };
 
   render() {
@@ -32,11 +37,11 @@ export class ImageGalleryItem extends Component {
             src={smallPhoto}
             alt={tags}
             className={css.ImageGalleryItemImage}
-            onClick={this.togglePopUpImage}
+            onClick={this.openModal}
           />
         </li>
         {this.state.showModal && (
-          <Modal onClose={this.togglePopUpImage}>
+          <Modal onClose={this.closeModal}>
             <img width="1400" height="900" src={bigPhoto} alt={tags} />
           </Modal>
         )}

@@ -1,28 +1,17 @@
 import css from './Button.module.css';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-export class Button extends Component {
-  state = {
-    pageBtn: 2,
-  };
+export const Button = ({ onChangePage }) => {
+  return (
+    <div className={css.ButtonWraper}>
+      <button type="submit" className={css.Button} onClick={onChangePage}>
+        Load more
+      </button>
+    </div>
+  );
+};
 
-  handleClick = () => {
-    this.setState(prevState => ({ pageBtn: prevState.pageBtn + 1 }));
-    console.log('click + 1: ', this.state.pageBtn);
-  };
-
-  // handleChangePage = () => {
-  //   this.props.onChangePage(this.state.pageBtn);
-  //   console.log('page after click', this.state.pageBtn);
-  // };
-
-  render() {
-    return (
-      <div className={css.ButtonWraper} onClick={this.handleChangePage}>
-        <button type="submit" className={css.Button} onClick={this.handleClick}>
-          Load more
-        </button>
-      </div>
-    );
-  }
-}
+Button.propTypes = {
+  onChangePage: PropTypes.func,
+};
