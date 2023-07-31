@@ -32,12 +32,11 @@ export class ImageGalleryItem extends Component {
     const { bigPhoto, smallPhoto, tags } = this.props;
     return (
       <>
-        <li className={css.ImageGalleryItem}>
+        <li className={css.ImageGalleryItem} onClick={this.openModal}>
           <img
             src={smallPhoto}
             alt={tags}
             className={css.ImageGalleryItemImage}
-            onClick={this.openModal}
           />
         </li>
         {this.state.showModal && (
