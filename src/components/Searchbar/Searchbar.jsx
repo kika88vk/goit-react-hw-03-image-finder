@@ -4,11 +4,6 @@ import { ImSearch } from 'react-icons/im';
 import PropTypes from 'prop-types';
 
 export class Searchbar extends Component {
-  propSubmit = this.props.onPropSubmit;
-  static propTypes = {
-    PropSubmit: PropTypes.func,
-  };
-
   state = {
     imageTags: '',
   };
@@ -53,3 +48,7 @@ export class Searchbar extends Component {
     );
   }
 }
+
+Searchbar.propTypes = {
+  onPropSubmit: PropTypes.func,
+};

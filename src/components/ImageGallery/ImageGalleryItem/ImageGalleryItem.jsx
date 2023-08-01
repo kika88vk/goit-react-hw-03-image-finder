@@ -4,18 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class ImageGalleryItem extends Component {
-  bigPhoto = this.props.bigPhoto;
-  smallPhoto = this.props.smallPhoto;
-  tags = this.props.tags;
-  openModal = this.props.openModal;
-
-  static propTypes = {
-    bigPhotog: PropTypes.string,
-    smallPhoto: PropTypes.string,
-    tags: PropTypes.string,
-    openModal: PropTypes.func,
-  };
-
   // state = {
   //   showModal: false,
   // };
@@ -52,3 +40,9 @@ export class ImageGalleryItem extends Component {
             <img width="1400" height="900" src={bigPhoto} alt={tags} />
           </Modal>
         )} */
+ImageGalleryItem.propTypes = {
+  bigPhoto: PropTypes.string,
+  smallPhoto: PropTypes.string,
+  tags: PropTypes.string,
+  openModal: PropTypes.func,
+};
